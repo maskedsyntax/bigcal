@@ -20,16 +20,24 @@ struct CalendarMenuView: View {
                 weekdayHeaders: generator.weekdayHeaders()
             )
         }
-        .padding(.horizontal, 16)
-        .padding(.bottom, 16)
-        .padding(.top, 12)
-        .frame(width: 380, height: 410)
-        .background(.ultraThinMaterial)
+        .padding(.horizontal, 14)
+        .padding(.bottom, 14)
+        .padding(.top, 10)
+        .frame(width: 320, height: 350)
+        .background(.regularMaterial.opacity(0.8)) // More transparent blend
+        .preferredColorScheme(.dark)
         .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .stroke(.white.opacity(0.18), lineWidth: 1)
+                .strokeBorder(
+                    LinearGradient(
+                        colors: [.white.opacity(0.15), .clear, .white.opacity(0.05)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    lineWidth: 0.5
+                )
         )
-        .shadow(radius: 24, y: 12)
+        .shadow(color: .black.opacity(0.15), radius: 20, x: 0, y: 10)
     }
 }

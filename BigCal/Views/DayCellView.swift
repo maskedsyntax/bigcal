@@ -6,28 +6,30 @@ struct DayCellView: View {
     var body: some View {
         VStack {
             Text("\(day.dayNumber)")
-                .font(.system(size: 13, weight: day.isToday ? .bold : .medium))
+                .font(.system(size: 12, weight: day.isToday ? .bold : .medium))
                 .foregroundColor(textColor)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .aspectRatio(1.0, contentMode: .fit)
-        .background(backgroundView)
-        .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-        .overlay(
-            RoundedRectangle(cornerRadius: 6, style: .continuous)
-                .stroke(day.isToday ? Color.accentColor : Color.white.opacity(0.1), lineWidth: day.isToday ? 2 : 1)
-        )
-        .opacity(day.isCurrentMonth ? 1.0 : 0.3)
+        .background {
+            if day.isToday {
+                RoundedRectangle(cornerRadius: 6, style: .continuous)
+                    .fill(Color.accentColor.opacity(0.2))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6, style: .continuous)
+                            .stroke(Color.accentColor.opacity(0.4), lineWidth: 1)
+                    )
+            }
+        }
+        .opacity(day.isCurrentMonth ? 1.0 : 0.25)
         .accessibilityLabel(accessibilityLabel)
     }
 
     private var textColor: Color {
         if day.isToday {
             return .accentColor
-        } else if day.isWeekend {
-            return .secondary
         } else {
-            return .primary
+            return .primary.opacity(0.9)
         }
     }
 

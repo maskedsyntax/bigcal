@@ -25,8 +25,8 @@ struct CalendarHeaderView: View {
             }
 
             Text(monthYearString)
-                .font(.system(size: 16, weight: .bold))
-                .frame(minWidth: 120)
+                .font(.system(size: 15, weight: .bold))
+                .frame(minWidth: 110)
 
             HStack(spacing: 6) {
                 Button(action: onNextMonth) {
