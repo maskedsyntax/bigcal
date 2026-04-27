@@ -13,12 +13,16 @@ struct CalendarHeaderView: View {
             HStack(spacing: 6) {
                 Button(action: onPrevYear) {
                     Image(systemName: "chevron.left.2")
+                        .frame(width: 22, height: 22)
+                        .background(Color.white.opacity(0.05), in: Circle())
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Previous year")
 
                 Button(action: onPrevMonth) {
                     Image(systemName: "chevron.left")
+                        .frame(width: 22, height: 22)
+                        .background(Color.white.opacity(0.05), in: Circle())
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Previous month")
@@ -31,12 +35,16 @@ struct CalendarHeaderView: View {
             HStack(spacing: 6) {
                 Button(action: onNextMonth) {
                     Image(systemName: "chevron.right")
+                        .frame(width: 22, height: 22)
+                        .background(Color.white.opacity(0.05), in: Circle())
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Next month")
 
                 Button(action: onNextYear) {
                     Image(systemName: "chevron.right.2")
+                        .frame(width: 22, height: 22)
+                        .background(Color.white.opacity(0.05), in: Circle())
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Next year")
@@ -44,9 +52,20 @@ struct CalendarHeaderView: View {
 
             Spacer()
 
-            Button("Today", action: onToday)
-                .buttonStyle(.bordered)
-                .controlSize(.small)
+            Button(action: onToday) {
+                Text("Today")
+                    .font(.system(size: 12, weight: .semibold))
+                    .lineLimit(1)
+                    .fixedSize(horizontal: true, vertical: false)
+                    .frame(minWidth: 42, minHeight: 24)
+                    .padding(.horizontal, 9)
+                    .background(Color.white.opacity(0.07), in: Capsule())
+                    .overlay(
+                        Capsule()
+                            .strokeBorder(Color.white.opacity(0.12), lineWidth: 0.5)
+                    )
+            }
+                .buttonStyle(.plain)
                 .accessibilityLabel("Today")
         }
     }
