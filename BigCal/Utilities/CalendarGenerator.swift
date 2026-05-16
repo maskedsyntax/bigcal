@@ -3,13 +3,13 @@ import Foundation
 class CalendarGenerator {
     private let calendar: Calendar
 
-    init(calendar: Calendar = .current) {
+    init(calendar: Calendar = .autoupdatingCurrent) {
         var cal = calendar
         cal.firstWeekday = 2 // Monday
         self.calendar = cal
     }
 
-    func generateDays(for date: Date) -> [CalendarDay] {
+    func generateDays(for date: Date, today: Date = Date()) -> [CalendarDay] {
         guard let monthInterval = calendar.dateInterval(of: .month, for: date) else {
             return []
         }
@@ -28,7 +28,6 @@ class CalendarGenerator {
         }
 
         var days: [CalendarDay] = []
-        let today = calendar.startOfDay(for: Date())
 
         // Standard 7x6 grid (42 days) to cover all possible month layouts
         for i in 0..<42 {
